@@ -160,6 +160,8 @@ body.no-hearts {
 
 /* ===== BOTTONI GIOCHI – GLASS STYLE ===== */
 .games-menu button {
+    appearance: none;
+-webkit-appearance: none;
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -200,6 +202,8 @@ body.no-hearts {
 
 /* ===== BOTTONI AZIONE – GLASS STYLE ===== */
 .game-box button {
+    appearance: none;
+-webkit-appearance: none;
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -239,8 +243,7 @@ body.no-hearts {
 }
 
 
-/* ===== FALLBACK PER TELEFONI CHE NON SUPPORTANO GLASS ===== */
-@supports not (backdrop-filter: blur(10px)) {
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
     .games-menu button,
     .game-box button {
         background: rgba(255,255,255,0.25);
