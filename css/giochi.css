@@ -160,8 +160,8 @@ body.no-hearts {
 
 /* ===== BOTTONI GIOCHI – GLASS STYLE ===== */
 .games-menu button {
-    appearance: none;
--webkit-appearance: none;
+    all: unset;
+display: inline-block;
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -202,8 +202,8 @@ body.no-hearts {
 
 /* ===== BOTTONI AZIONE – GLASS STYLE ===== */
 .game-box button {
-    appearance: none;
--webkit-appearance: none;
+    all: unset;
+display: inline-block;
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
