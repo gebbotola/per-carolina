@@ -237,3 +237,12 @@ body.no-hearts {
     box-shadow:
         inset 0 2px 4px rgba(0, 0, 0, 0.35);
 }
+
+
+/* ===== FALLBACK PER TELEFONI CHE NON SUPPORTANO GLASS ===== */
+@supports not (backdrop-filter: blur(10px)) {
+    .games-menu button,
+    .game-box button {
+        background: rgba(255,255,255,0.25);
+    }
+}
