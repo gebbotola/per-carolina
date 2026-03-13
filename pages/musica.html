@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Musica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at bottom right, #1db954 0%, #000 60%);
+    }
+
+    /* BACK */
+    .back-home {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      color: #b3b3b3;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .back-home:hover {
+      color: #1DB954;
+    }
+
+    .music-wrap {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 20px 160px;
+      color: white;
+    }
+
+    h1 {
+      color: #1DB954;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: #b3b3b3;
+      margin-bottom: 32px;
+    }
+
+    /* CARD */
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 22px;
+    }
+
+    .music-card {
+      background: #181818;
+      border-radius: 14px;
+      padding: 14px;
+      transition: background .25s;
+    }
+
+    .music-card:hover {
+      background: #282828;
+    }
+
+    .cover {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .play-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 46px;
+      height: 46px;
+      background: #1DB954;
+      color: black;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: .25s;
+      pointer-events: none;
+    }
+
+    .music-card:hover .play-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .info {
+      margin-top: 14px;
+    }
+
+    .title {
+      font-weight: 600;
+      font-size: .95rem;
+    }
+
+    .artist {
+      font-size: .8rem;
+      color: #b3b3b3;
+    }
+
+    /* PLAYER */
+    .music-player {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #1DB954;
+      color: black;
+      display: flex;
+      gap: 12px;
+      padding: 14px 18px;
+      align-items: center;
+    }
+
+    .player-cover {
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .player-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .player-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .player-title {
+      font-weight: 700;
+    }
+
+    .player-artist {
+      font-size: .8rem;
+      opacity: .8;
+    }
+
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .75rem;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background: #555;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .progress-fill {
+      position: absolute;
+      height: 100%;
+      width: 0%;
+      background: black;
+    }
+
+    .progress-dot {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      width: 10px;
+      height: 10px;
+      background: black;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="back-home" onclick="location.href='../home.html'">← Torna alla Home</div>
+
+  <div class="music-wrap">
+    <h1>Musica</h1>
+    <p class="subtitle">Le canzoni che parlano di noi.</p>
+
+    <div class="music-grid">
+
+      <!-- Raindance -->
+      <div class="music-card">
+        <div class="cover">
+          <a href="spotify:track:3oTuTpF1F3A7rEC6RKsMRz"
+            onclick="playSong(event,'Raindance','Dave','raindance.jpg','https://open.spotify.com/track/3oTuTpF1F3A7rEC6RKsMRz',219)">
+            <img src="../img/covers/raindance.jpg">
+            <div class="play-btn">▶</div>
+          </a>
+        </div>
+        <div class="info">
+          <div class="title">Raindance</div>
+          <div class="artist">Dave</div>
+        </div>
+      </div>
+
+      <!-- No. 1 Party Anthem -->
+      <div class="music-card">
+        <div class="cover">
+          <a href="spotify:track:5TTGoX70AFrTvuEtqHK37S"
+            onclick="playSong(event,'No. 1 Party Anthem','Arctic Monkeys','no1partyanthem.jpg','https://open.spotify.com/track/5TTGoX70AFrTvuEtqHK37S',243)">
+            <img src="../img/covers/no1partyanthem.jpg">
+            <div class="play-btn">▶</div>
+          </a>
+        </div>
+        <div class="info">
+          <div class="title">No. 1 Party Anthem</div>
+          <div class="artist">Arctic Monkeys</div>
+        </div>
+      </div>
+
+      <!-- Aperture -->
+      <div class="music-card">
+        <div class="cover">
+          <a href="shttps://open.spotify.com/intl-it/track/45Z3m6yazmAi4jZuW0tzW0?si=689e5ac97c964a31"
+            onclick="playSong(event,'Aperture','Harry Styles','aperture.jpg','https://open.spotify.com/track/45Z3m6yazmAi4jZuW0tzW0',311)">
+            <img src="../img/covers/aperture.jpg">
+            <div class="play-btn">▶</div>
+          </a>
+        </div>
+
+        <div class="info">
+          <div class="title">Aperture</div>
+          <div class="artist">Harry Styles</div>
+        </div>
+      </div>
+
+      <!-- All I Need -->
+      <div class="music-card">
+        <div class="cover">
+          <a href="spotify:track:5Qv2Nby1xTr9pQyjkrc94J"
+            onclick="playSong(event,'All I Need','Radiohead','allineed.jpg','https://open.spotify.com/track/5Qv2Nby1xTr9pQyjkrc94J',228)">
+            <img src="../img/covers/allineed.jpg">
+            <div class="play-btn">▶</div>
+          </a>
+        </div>
+        <div class="info">
+          <div class="title">All I Need</div>
+          <div class="artist">Radiohead</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PLAYER -->
+  <div class="music-player">
+    <div class="player-cover">
+      <img id="playerImg" src="../img/covers/raindance.jpg">
+    </div>
+
+    <div class="player-info">
+      <div class="player-title" id="playerTitle">Scegli una canzone</div>
+      <div class="player-artist" id="playerArtist">—</div>
+
+      <div class="progress-wrap">
+        <span id="currentTime">0:00</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+          <div class="progress-dot" id="progressDot"></div>
+        </div>
+        <span id="totalTime">0:00</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let timer, current = 0, duration = 0;
+
+    function playSong(e, title, artist, cover, webUrl, dur) {
+      e.preventDefault();
+
+      clearInterval(timer);
+      current = 0;
+      duration = dur;
+
+      document.getElementById("playerTitle").textContent = title;
+      document.getElementById("playerArtist").textContent = artist;
+      document.getElementById("playerImg").src = "../img/covers/" + cover;
+      document.getElementById("currentTime").textContent = "0:00";
+      document.getElementById("totalTime").textContent = format(dur);
+
+      setTimeout(() => {
+        timer = setInterval(() => {
+          current++;
+          update();
+          if (current >= duration) clearInterval(timer);
+        }, 1000);
+      }, 800);
+
+      location.href = e.currentTarget.href;
+      setTimeout(() => location.href = webUrl, 600);
+    }
+
+    function update() {
+      const pct = (current / duration) * 100;
+      document.getElementById("progressFill").style.width = pct + "%";
+      document.getElementById("progressDot").style.left = pct + "%";
+      document.getElementById("currentTime").textContent = format(current);
+    }
+
+    function format(s) {
+      const m = Math.floor(s / 60);
+      const sec = s % 60;
+      return m + ":" + (sec < 10 ? "0" + sec : sec);
+    }
+  </script>
+
+</body>
+
+</html>

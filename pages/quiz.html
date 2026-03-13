@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+
+    <!-- CSS GENERALE -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- CSS QUIZ -->
+    <link rel="stylesheet" href="../css/quiz.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Quiz</h1>
+
+        <div id="quiz">
+
+            <div class="progress" id="progressText"></div>
+
+            <div class="bar">
+                <div class="bar-fill" id="barFill"></div>
+            </div>
+
+            <div class="question" id="question"></div>
+
+            <div class="answers" id="answers"></div>
+
+        </div>
+
+        <div id="result" class="hidden">
+            <h2 id="resultTitle"></h2>
+            <p id="resultText"></p>
+            <button onclick="startQuiz()">Ricomincia</button>
+        </div>
+
+        <div class="back" onclick="goHome()">← Torna indietro</div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="../js/quiz.js"></script>
+
+</body>
+
+</html>

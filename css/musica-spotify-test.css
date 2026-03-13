@@ -1,0 +1,196 @@
+/* ===== MUSICA – SPOTIFY STYLE TEST ===== */
+
+body {
+    background: #121212;
+}
+
+/* container più “app-like” */
+.container {
+    max-width: 100%;
+    padding: 24px 16px 90px;
+}
+
+/* titolo */
+h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.subtitle {
+    text-align: left;
+    color: #b3b3b3;
+    margin-bottom: 24px;
+}
+
+/* lista brani */
+.songs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* riga canzone */
+.song-card {
+    background: #181818;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.25s;
+}
+
+.song-card:hover {
+    background: #282828;
+    transform: none;
+}
+
+/* titolo canzone */
+.song-card h2 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* descrizione */
+.song-card p {
+    font-size: 0.85rem;
+    color: #b3b3b3;
+    margin: 6px 0 0;
+}
+
+/* finto player in basso */
+.back {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1db954;
+    color: black;
+    font-weight: 600;
+    padding: 16px;
+    text-align: center;
+    opacity: 1;
+    border-radius: 0;
+}
+
+.back:hover {
+    opacity: 0.95;
+}
+
+/* desktop */
+@media (min-width: 768px) {
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding-bottom: 110px;
+    }
+}
+
+.music-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.music-card {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 14px;
+    padding: 12px;
+}
+
+.cover {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cover img {
+    width: 100%;
+    display: block;
+}
+
+.play-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 44px;
+    height: 44px;
+    background: #1DB954;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.music-card:hover .play-btn {
+    opacity: 1;
+}
+
+.info {
+    margin-top: 10px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.artist {
+    font-size: 0.8rem;
+    color: #b3b3b3;
+}
+
+.player-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+}
+
+.progress-bar {
+    position: relative;
+    flex: 1;
+    height: 4px;
+    background: #555;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: #000;
+}
+
+.progress-dot {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#currentTime,
+#totalTime {
+    width: 34px;
+    text-align: center;
+}

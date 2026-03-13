@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Giochi</title>
+
+    <!-- CSS HOME -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- CSS GIOCHI -->
+    <link rel="stylesheet" href="../css/giochi.css">
+</head>
+
+<body class="no-hearts">
+    <div class="games-wrapper">
+
+        <h1 class="page-title">Giochi</h1>
+
+        <!-- MENU GIOCHI -->
+        <div class="games-menu">
+            <button onclick="showTris()">Tris</button>
+            <button onclick="showMemory()">Memory</button>
+        </div>
+
+        <!-- AREA GIOCHI (centrata) -->
+        <div class="games-area">
+
+            <!-- TRIS -->
+            <div id="trisGame" class="game-box hidden">
+
+                <div class="selectors">
+                    <select id="mode" onchange="resetTris()">
+                        <option value="duo">❤️ vs ⭐</option>
+                        <option value="pc">❤️ vs 🤖 PC</option>
+                    </select>
+
+                    <select id="difficulty" onchange="resetTris()">
+                        <option value="easy">Facile</option>
+                        <option value="medium">Media</option>
+                        <option value="hard">Difficile</option>
+                    </select>
+                </div>
+
+                <div class="score">
+                    <div>❤️ <span id="scoreH">0</span></div>
+                    <div>⭐ <span id="scoreS">0</span></div>
+                </div>
+
+                <div class="status" id="trisStatus">Tocca a ❤️</div>
+                <div class="board" id="trisBoard"></div>
+
+                <div class="actions">
+                    <button onclick="resetTris()">Ricomincia</button>
+                    <button onclick="resetScore()">Azzera punteggi</button>
+                </div>
+            </div>
+
+            <!-- MEMORY -->
+            <div id="memoryGame" class="game-box hidden">
+                <div id="memoryStatus" class="status">Trova tutte le coppie.</div>
+                <div class="memory-board" id="memoryBoard"></div>
+                <button onclick="startMemory()">Ricomincia</button>
+            </div>
+
+        </div>
+
+        <div class="back" onclick="goHome()">← Torna alla home</div>
+    </div>
+
+    <!-- JS IDENTICO -->
+    <script>
+        function showTris() {
+            trisGame.classList.remove("hidden");
+            memoryGame.classList.add("hidden");
+        }
+        function showMemory() {
+            memoryGame.classList.remove("hidden");
+            trisGame.classList.add("hidden");
+        }
+
+        const trisBoard = document.getElementById("trisBoard");
+        const trisStatus = document.getElementById("trisStatus");
+        const scoreHEl = document.getElementById("scoreH");
+        const scoreSEl = document.getElementById("scoreS");
+
+        let trisCells = Array(9).fill("");
+        let player = "❤️", over = false, scoreH = 0, scoreS = 0;
+
+        const wins = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+
+        function drawTris() {
+            trisBoard.innerHTML = "";
+            trisCells.forEach((v, i) => {
+                const c = document.createElement("div");
+                c.className = "cell";
+                c.textContent = v;
+                c.onclick = () => move(i);
+                trisBoard.appendChild(c);
+            });
+        }
+
+        function move(i) {
+            if (trisCells[i] || over) return;
+            trisCells[i] = player;
+            drawTris();
+            if (check()) return;
+            player = player === "❤️" ? "⭐" : "❤️";
+            trisStatus.textContent = "Tocca a " + player;
+            if (mode.value === "pc" && player === "⭐") setTimeout(pcMove, 400);
+        }
+
+        function pcMove() {
+            let empty = trisCells.map((v, i) => v === "" ? i : null).filter(v => v !== null);
+            let m = empty[Math.floor(Math.random() * empty.length)];
+            trisCells[m] = "⭐";
+            drawTris();
+            if (check()) return;
+            player = "❤️";
+            trisStatus.textContent = "Tocca a ❤️";
+        }
+
+        function check() {
+            for (let w of wins) {
+                const [a, b, c] = w;
+                if (trisCells[a] && trisCells[a] === trisCells[b] && trisCells[a] === trisCells[c]) {
+                    over = true;
+                    if (trisCells[a] === "❤️") { scoreH++; scoreHEl.textContent = scoreH; }
+                    else { scoreS++; scoreSEl.textContent = scoreS; }
+                    trisStatus.textContent = trisCells[a] + " vince ";
+                    return true;
+                }
+            }
+            if (!trisCells.includes("")) {
+                over = true;
+                trisStatus.textContent = "Pareggio ✨";
+                return true;
+            }
+            return false;
+        }
+
+        function resetTris() {
+            trisCells = Array(9).fill("");
+            player = "❤️"; over = false;
+            trisStatus.textContent = "Tocca a ❤️";
+            drawTris();
+        }
+
+        function resetScore() {
+            scoreH = 0; scoreS = 0;
+            scoreHEl.textContent = 0;
+            scoreSEl.textContent = 0;
+        }
+
+        const emojis = ["❤️", "❤️", "⭐", "⭐", "🌙", "🌙", "💫", "💫", "🔥", "🔥", "🍀", "🍀", "🌸", "🌸", "🎵", "🎵", "✨", "✨"];
+        let first = null, lock = false, found = 0;
+
+        function startMemory() {
+            found = 0; first = null; lock = false;
+            memoryBoard.innerHTML = "";
+            [...emojis].sort(() => Math.random() - 0.5).forEach(sym => {
+                const c = document.createElement("div");
+                c.className = "memory-card";
+                c.dataset.sym = sym;
+                c.onclick = () => flip(c);
+                memoryBoard.appendChild(c);
+            });
+        }
+
+        function flip(card) {
+            if (lock || card.classList.contains("revealed")) return;
+            card.textContent = card.dataset.sym;
+            card.classList.add("revealed");
+            if (!first) { first = card; return; }
+            if (first.dataset.sym === card.dataset.sym) {
+                found++; first = null;
+                if (found === emojis.length / 2)
+                    memoryStatus.textContent = "Tutte le coppie trovate ❤️";
+            } else {
+                lock = true;
+                setTimeout(() => {
+                    card.textContent = "";
+                    first.textContent = "";
+                    card.classList.remove("revealed");
+                    first.classList.remove("revealed");
+                    first = null; lock = false;
+                }, 800);
+            }
+        }
+
+        function goHome() { window.location.href = "../home.html"; }
+
+        drawTris();
+        startMemory();
+    </script>
+</body>
+
+</html>

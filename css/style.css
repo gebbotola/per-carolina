@@ -1,0 +1,234 @@
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== VARIABILI ===== */
+:root {
+  --bg-dark: #000000;
+  --text: #f9fafb;
+  --text-soft: rgba(255, 255, 255, 0.75);
+  --card: rgba(255, 255, 255, 0.05);
+  --card-hover: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== BODY & BACKGROUND ===== */
+html,
+body {
+  min-height: 100vh;
+  /* Ho integrato il tuo gradiente personalizzato direttamente qui */
+  background-image: linear-gradient(135deg,
+      hsl(0deg 0% 0%) 35%,
+      hsl(0deg 100% 20%) 73%,
+      hsl(0deg 100% 22%) 85%,
+      hsl(0deg 100% 25%) 92%,
+      hsl(0deg 100% 27%) 96%,
+      hsl(0deg 100% 30%) 99%,
+      hsl(0deg 100% 33%) 100%,
+      hsl(0deg 100% 35%) 100%,
+      hsl(0deg 100% 38%) 100%,
+      hsl(0deg 100% 41%) 100%,
+      hsl(0deg 100% 44%) 100%,
+      hsl(0deg 100% 47%) 100%,
+      hsl(0deg 100% 50%) 100%);
+  background-attachment: fixed;
+  /* Mantiene lo sfondo fermo mentre i contenuti scorrono */
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== SFONDO CUORI (DECORATIVO) ===== */
+body::after {
+  content: "❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️";
+  position: fixed;
+  inset: 0;
+  font-size: 4.5rem;
+  line-height: 7rem;
+  opacity: 0.06;
+  /* Leggermente aumentata per visibilità */
+  transform: rotate(-8deg) scale(1.1);
+  pointer-events: none;
+  filter: blur(1px);
+  z-index: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* ===== CONTENITORI ===== */
+.container,
+header,
+section,
+main {
+  position: relative;
+  z-index: 1;
+  /* Sopra lo sfondo di cuori */
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.header h1 {
+  font-weight: 400;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.header p {
+  opacity: 0.7;
+}
+
+/* ===== GRIGLIA CARDS ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+/* ===== CARD ===== */
+.cards .card {
+  background: var(--card);
+  backdrop-filter: blur(5px);
+  /* Effetto vetro opzionale molto elegante */
+  border-radius: 18px;
+  padding: 24px;
+  min-height: 120px;
+  cursor: pointer;
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.cards .card:hover {
+  background: var(--card-hover);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== TESTI CARD ===== */
+.cards .card h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.cards .card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* ===== CARD BLOCCATE ===== */
+.cards .card.locked {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cards .card.locked:hover {
+  transform: none;
+  background: var(--card);
+  box-shadow: none;
+}
+
+/* ===== LINK ===== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===== INDEX (ACCESSO) ===== */
+body.index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenitore lock */
+.lock-container {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(6px);
+  border-radius: 22px;
+  padding: 30px 26px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Titolo */
+.lock-container h1 {
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+/* Display codice */
+.display {
+  font-size: 1.8rem;
+  letter-spacing: 8px;
+  margin-bottom: 24px;
+  min-height: 40px;
+}
+
+/* Tastierino */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.keypad button {
+  padding: 14px;
+  font-size: 1.1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.keypad button:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Errore */
+.display.error {
+  color: #ff6b6b;
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+
+  75% {
+    transform: translateX(-5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
