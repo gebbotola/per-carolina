@@ -45,7 +45,8 @@ body.no-hearts .background-hearts {
 /* ===== BOTTONI ===== */
 .games-menu button,
 .game-box button {
-    background: rgba(255, 255, 255, 0.18);
+    background-color: rgba(30,30,40,0.55);
+    background: rgba(30,30,40,0.55);
     border: none;
     color: white;
     padding: 8px 18px;
