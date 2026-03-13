@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Accesso</title>
+
+  <!-- CSS globale (stesso della Home) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="index">
+
+  <div class="lock-container">
+    <h1>Inserisci il codice</h1>
+
+    <div id="display" class="display">● ● ● ● ● ●</div>
+
+    <div class="keypad">
+      <button onclick="press(1)">1</button>
+      <button onclick="press(2)">2</button>
+      <button onclick="press(3)">3</button>
+
+      <button onclick="press(4)">4</button>
+      <button onclick="press(5)">5</button>
+      <button onclick="press(6)">6</button>
+
+      <button onclick="press(7)">7</button>
+      <button onclick="press(8)">8</button>
+      <button onclick="press(9)">9</button>
+
+      <button onclick="clearCode()">⌫</button>
+      <button onclick="press(0)">0</button>
+      <button onclick="clearCode()">C</button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const correctCode = "060925";
+    let inputCode = "";
+
+    function press(number) {
+      if (inputCode.length >= 6) return;
+
+      inputCode += number;
+      updateDisplay();
+
+      if (inputCode.length === 6) {
+        checkCode();
+      }
+    }
+
+    function updateDisplay() {
+      const display = document.getElementById("display");
+      let dots = "";
+
+      for (let i = 0; i < 6; i++) {
+        dots += i < inputCode.length ? "● " : "○ ";
+      }
+
+      display.textContent = dots.trim();
+    }
+
+    function clearCode() {
+      inputCode = "";
+      updateDisplay();
+    }
+
+    function checkCode() {
+      const display = document.getElementById("display");
+
+      if (inputCode === correctCode) {
+        window.location.href = "home.html";
+      } else {
+        display.classList.add("error");
+        setTimeout(() => display.classList.remove("error"), 400);
+        clearCode();
+      }
+    }
+  </script>
+
+</body>
+
+</html>

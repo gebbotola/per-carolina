@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Il nostro spazio</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Benvenuta amore mio.</h1>
+            <p>
+                Questo è uno spazio solo nostro.<br>
+                Non c’è un ordine giusto: apri ciò che senti.
+            </p>
+        </div>
+
+        <div class="cards">
+            <!-- QUIZ -->
+            <div class="card" onclick="goTo('pages/quiz.html')">
+                <h2>❓ Quiz</h2>
+                <p>
+                    Un gioco su di noi.<br>
+                    Rispondi d’istinto.
+                </p>
+            </div>
+
+
+            <!-- LEGGI QUANDO -->
+            <div class="card" onclick="goTo('pages/leggi-quando.html')">
+                <h2>💌 Leggi quando</h2>
+                <p>
+                    Parole da aprire solo<br>
+                    quando ne hai bisogno.
+                </p>
+            </div>
+
+
+            <!-- FAVOLE -->
+            <div class="card" onclick="goTo('pages/favole.html')">
+                <h2>📖 Favole</h2>
+                <p>
+                    Storie da aprire in base al momento.<br>
+                    Scegli il mood.
+                </p>
+            </div>
+
+            <!-- GIOCHI -->
+            <div class="card" onclick="goTo('pages/giochi.html')">
+                <h2>🎮 Giochi</h2>
+                <p>
+                    Piccole sfide, senza fretta.<br>
+                    Solo per sorridere.
+                </p>
+            </div>
+
+            <!-- Biglietti -->
+            <div class="card" onclick="goTo('pages/biglietti.html')">
+                <h2>🎟️ Biglietti</h2>
+                <p>
+                    Tentiamo la fortuna.<br>
+                    Di nuovo.
+                </p>
+            </div>
+
+
+
+
+            <!-- MUSICA -->
+            <div class="card" onclick="goTo('pages/musica.html')">
+                <h2>🎵 Musica</h2>
+                <p>
+                    Canzoni che quando ascolto<br>
+                    penso a te.
+                </p>
+            </div>
+
+            <!-- RICORDI -->
+            <div class="card" onclick="goTo('pages/ricordi.html')">
+                <h2>🖼️ Ricordi</h2>
+                <p>
+                    Una linea che scorre.<br>
+                    Dal primo momento a oggi.
+                </p>
+            </div>
+
+            <!-- TEMPO INSIEME -->
+            <div class="card" onclick="goTo('pages/tempo.html')">
+                <h2>⏳ Tempo</h2>
+                <p>
+                    Da quanto tempo<br>
+                    siamo noi.
+                </p>
+            </div>
+
+
+
+        </div>
+
+        <footer>
+            Creato con calma. Per te.
+        </footer>
+
+    </div>
+
+    <script>
+        function goTo(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
+
+</html>

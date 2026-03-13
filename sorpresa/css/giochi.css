@@ -1,0 +1,239 @@
+/* ===== DISATTIVA CUORI SOLO IN QUESTA PAGINA ===== */
+body.no-hearts::before,
+body.no-hearts::after,
+body.no-hearts .hearts,
+body.no-hearts .background-hearts {
+    display: none !important;
+}
+
+/* ===== CONTENITORE PRINCIPALE ===== */
+.games-wrapper {
+    width: 420px;
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    border-radius: 28px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    text-align: center;
+}
+
+/* ===== TITOLO ===== */
+.page-title {
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+/* ===== MENU GIOCHI CENTRATO ===== */
+.games-menu {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+/* ===== AREA GIOCHI CENTRATA ===== */
+.games-area {
+    display: flex;
+    justify-content: center;
+}
+
+/* ===== BOX GIOCO ===== */
+.game-box {
+    width: 100%;
+}
+
+/* ===== BOTTONI ===== */
+.games-menu button,
+.game-box button {
+    background: rgba(255, 255, 255, 0.18);
+    border: none;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.games-menu button:hover,
+.game-box button:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.hidden {
+    display: none;
+}
+
+/* ===== SELECT ===== */
+.selectors {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.selectors select {
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 16px;
+}
+
+/* ===== STATUS & SCORE ===== */
+.score {
+    display: flex;
+    justify-content: space-around;
+    margin: 12px 0;
+}
+
+.status {
+    margin: 10px 0;
+    min-height: 24px;
+}
+
+/* ===== TRIS ===== */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 18px auto;
+}
+
+.cell {
+    height: 90px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    font-size: 2.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* ===== MEMORY ===== */
+.memory-board {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.memory-card {
+    height: 60px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    font-size: 1.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.memory-card.revealed {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* ===== BACK ===== */
+.back {
+    margin-top: 20px;
+    opacity: .6;
+    cursor: pointer;
+}
+
+.back:hover {
+    opacity: 1;
+}
+
+body.no-hearts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.no-hearts {
+    min-height: 100vh;
+}
+
+/* ===== BOTTONI GIOCHI – GLASS STYLE ===== */
+.games-menu button {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+
+    padding: 10px 22px;
+    border-radius: 999px;
+
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.25),
+        0 8px 20px rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* HOVER */
+.games-menu button:hover {
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        0 12px 28px rgba(0, 0, 0, 0.35);
+    transform: translateY(-1px);
+}
+
+/* CLICK */
+.games-menu button:active {
+    transform: translateY(0);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== BOTTONI AZIONE – GLASS STYLE ===== */
+.game-box button {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+
+    padding: 10px 20px;
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.25),
+        0 8px 20px rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* HOVER */
+.game-box button:hover {
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        0 12px 28px rgba(0, 0, 0, 0.35);
+    transform: translateY(-1px);
+}
+
+/* CLICK */
+.game-box button:active {
+    transform: translateY(0);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.35);
+}

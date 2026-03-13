@@ -1,0 +1,143 @@
+/* =========================
+   RICORDI – STILE DEDICATO
+   ========================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background-image: linear-gradient(135deg,
+            hsl(0deg 0% 0%) 35%,
+            hsl(0deg 100% 20%) 73%,
+            hsl(0deg 100% 22%) 85%,
+            hsl(0deg 100% 25%) 92%,
+            hsl(0deg 100% 27%) 96%,
+            hsl(0deg 100% 30%) 99%,
+            hsl(0deg 100% 33%) 100%,
+            hsl(0deg 100% 35%) 100%,
+            hsl(0deg 100% 38%) 100%,
+            hsl(0deg 100% 41%) 100%,
+            hsl(0deg 100% 44%) 100%,
+            hsl(0deg 100% 47%) 100%,
+            hsl(0deg 100% 50%) 100%);
+}
+
+/* contenitore principale */
+
+.timeline-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 70px 30px 50px;
+}
+
+/* titolo */
+
+.timeline-container h1 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* linea timeline */
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    padding-left: 30px;
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* blocco evento */
+
+.timeline-item {
+    margin-bottom: 70px;
+    position: relative;
+
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* animazione quando appare */
+
+.timeline-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* pallino timeline */
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -41px;
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+}
+
+/* card ricordo */
+
+.content {
+    background: rgba(255, 255, 255, 0.14);
+    padding: 22px;
+    border-radius: 12px;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+/* hover card */
+
+.content:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.22);
+}
+
+/* titolo ricordo */
+
+.content h2 {
+    margin-top: 0;
+    font-weight: normal;
+    margin-bottom: 14px;
+}
+
+/* testo ricordo */
+
+.content p {
+    opacity: 0.85;
+    line-height: 1.5em;
+}
+
+/* immagini */
+
+.content img {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 0 auto 14px auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* hover foto */
+
+.content img:hover {
+    transform: scale(1.04);
+}
+
+/* bottone torna indietro */
+
+.back {
+    margin-top: 80px;
+    text-align: center;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.back:hover {
+    opacity: 1;
+}

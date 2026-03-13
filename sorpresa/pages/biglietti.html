@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Biglietti</title>
+
+    <!-- CSS BASE -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- CSS BIGLIETTI -->
+    <link rel="stylesheet" href="../css/biglietti.css">
+</head>
+
+<body class="tickets-gradient no-hearts">
+    <div class="tickets-wrapper">
+
+        <!-- STEP 1 -->
+        <div id="stepTickets">
+            <h1>Biglietti</h1>
+            <p>
+                Biglietti per il prossimo tour di<br>
+                <strong>Harry Styles</strong>
+            </p>
+            <button onclick="startQueue()">Acquista biglietti</button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div id="stepQueue" class="hidden">
+            <h1>Sei in coda per i biglietti di quel soggetto di Harry Styles</h1>
+
+            <div class="artist-photo">
+                <img src="../img/harry.jpg" alt="Harry Styles">
+            </div>
+
+            <div class="queue-number" id="people">
+                48392 persone davanti a te
+            </div>
+
+            <div class="progress">
+                <div class="progress-bar" id="bar"></div>
+            </div>
+
+            <p class="small" id="queueText">
+                Non chiudere la pagina.
+            </p>
+        </div>
+
+        <!-- STEP 3 -->
+        <div id="stepEnd" class="hidden">
+            <h1>Complimenti.</h1>
+            <p id="endText">Scherzavo.</p>
+            <button onclick="nextEnd()">Continua</button>
+        </div>
+
+        <div class="back" onclick="goHome()">← Torna alla home</div>
+    </div>
+
+    <!-- JS -->
+    <script>
+        let progress = 0;
+        let people = 48392;
+        let interval;
+        let endStep = 0;
+
+        const peopleEl = document.getElementById("people");
+        const queueText = document.getElementById("queueText");
+        const bar = document.getElementById("bar");
+        const stepTickets = document.getElementById("stepTickets");
+        const stepQueue = document.getElementById("stepQueue");
+        const stepEnd = document.getElementById("stepEnd");
+        const endText = document.getElementById("endText");
+
+        function startQueue() {
+            stepTickets.classList.add("hidden");
+            stepQueue.classList.remove("hidden");
+
+            interval = setInterval(() => {
+                progress += Math.random() * 3;
+                people -= Math.floor(Math.random() * 120);
+
+                if (people < 0) people = 0;
+                if (progress > 100) progress = 100;
+
+                bar.style.width = progress + "%";
+                peopleEl.textContent = people + " persone davanti a te";
+
+                if (progress > 40) queueText.textContent = "Stai andando benissimo.";
+                if (progress > 70) queueText.textContent = "Ci sei quasi.";
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(showEnd, 800);
+                }
+            }, 700);
+        }
+
+        function showEnd() {
+            stepQueue.classList.add("hidden");
+            stepEnd.classList.remove("hidden");
+        }
+
+        function nextEnd() {
+            endStep++;
+            if (endStep === 1)
+                endText.textContent =
+                    "Dai, lo sapevi anche tu che era troppo bello per essere vero.";
+            else if (endStep === 2)
+                endText.textContent =
+                    "Ore di coda. Stress. Speranze. Tutto per niente 😌";
+            else
+                endText.innerHTML =
+                    "Non ti preoccupare.<br>I biglietti li prenderai davvero quando usciranno ❤️";
+        }
+
+        function goHome() {
+            window.location.href = "../home.html";
+        }
+    </script>
+</body>
+
+</html>

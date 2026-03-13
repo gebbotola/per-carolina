@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/ricordi.css">
+
+  <meta charset="UTF-8">
+  <title>Ricordi</title>
+  
+
+</head>
+
+<body>
+
+  <div class="timeline-container">
+
+    <h1>Ricordi</h1>
+    <p>Serie di foto (purtroppo ne ho poche ma non potevo chiedertele che altrimenti mi sgamavi), con titoli poetici e commenti che non sono da meno</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>In Palestra</h2>
+          <img src="../img/ricordi/palestra.jpg">
+          <p>Ci ha fatto conoscere e ci ha unito</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Prima volta con i tuoi</h2>
+          <img src="../img/ricordi/genitori.jpg">
+          <p>Stavo morendo di ansia, però ero felicissimo ed è stato troppo bello</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Rainbow Magicland</h2>
+          <img src="../img/ricordi/rainbow.jpg">
+          <p>Giornata organizzata totalmente a cazzo. Mi sono divertito un mondo. Sono ancora offeso per le prese per il culo</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Sessione di studio a casa mia</h2>
+          <img src="../img/ricordi/scuola.jpg">
+          <p>Qui è entrata la scuola di mezzo, ma non è riuscita a non farci stare insieme</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Vodka alla pesca</h2>
+          <img src="../img/ricordi/pariamento.jpg">
+          <p>Non c'è bisogno di commentare</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>18esimo di Giosu</h2>
+          <img src="../img/ricordi/giosue18.jpg">
+          <p>Eri bellissima quella sera e questa foto mi rende troppo felice ogni volta che la guardo.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>In pale pt.2</h2>
+          <img src="../img/ricordi/pale.jpg">
+          <p>Penso l'ultimo allenamento serio insieme</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Compleanno di Ale</h2>
+          <img src="../img/ricordi/ale.jpg">
+          <p>Nonostante il periodo di merda che stavamo passando siamo comunque rimasti uniti</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>La donna più bella di questo mondo</h2>
+          <img src="../img/ricordi/preferita.jpg">
+          <p>Nonostante tu sia disaccordo, ripeterò sempre che questa foto sia la mia preferita. Sei bellissima</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Le due donne della mia vita</h2>
+          <img src="../img/ricordi/vita.jpg">
+          <p></p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Non saprei che titolo dargli</h2>
+          <img src="../img/ricordi/belladomanda.jpg">
+          <p>Che commento metto? Bella domanda</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Al mio 18esimo</h2>
+          <img src="../img/ricordi/18.jpg">
+          <p>Una delle cose più belle di sempre quella di poter condividere un momento così tanto importante della mia vita con te, che sei la cosa più bella che mi sia mai capitata.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Letterone</h2>
+          <img src="../img/ricordi/lettera.jpg">
+          <p>Penso una delle sorprese più belle di sempre quella della scatola, con il bracciale, l'orsacchiotto e la lettera. Ancora oggi la rileggo di tanto in tanto quando sono giù.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Cappello</h2>
+          <img src="../img/ricordi/cappello.jpg">
+          <p>Anche qui sei bellissima, ma effettivamente lo sei sempre.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="content">
+          <h2>Studio matto e disperato</h2>
+          <img src="../img/ricordi/studio.jpg">
+          <p>Pomeriggio bello ricco che si conclude con una sessione di studio di informatica. </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="back" onclick="goHome()">
+      ← Torna indietro
+    </div>
+
+  </div>
+
+  <script>
+
+    function goHome() {
+      window.location.href = "../home.html";
+    }
+
+    const items = document.querySelectorAll(".timeline-item");
+
+function revealTimeline() {
+  const trigger = window.innerHeight * 0.85;
+
+  items.forEach(item => {
+    const top = item.getBoundingClientRect().top;
+
+    if (top < trigger) {
+      item.classList.add("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealTimeline);
+window.addEventListener("load", revealTimeline);
+
+  </script>
+
+</body>
+
+</html>

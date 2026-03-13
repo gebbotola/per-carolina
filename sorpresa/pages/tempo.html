@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Da quanto stiamo insieme</title>
+
+    <!-- CSS BASE / HOME -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- CSS TEMPO -->
+    <link rel="stylesheet" href="../css/tempo.css">
+</head>
+
+<body class="no-hearts">
+    <div class="time-wrapper">
+
+        <h1>Tempo</h1>
+        <p class="subtitle">Da quanto tempo siamo noi.</p>
+
+        <div class="time-grid">
+            <div class="time-box">
+                <div class="number" id="months">0</div>
+                <div class="label">mesi</div>
+            </div>
+
+            <div class="time-box">
+                <div class="number" id="days">0</div>
+                <div class="label">giorni</div>
+            </div>
+
+            <div class="time-box">
+                <div class="number" id="hours">0</div>
+                <div class="label">ore</div>
+            </div>
+
+            <div class="time-box">
+                <div class="number" id="minutes">0</div>
+                <div class="label">minuti</div>
+            </div>
+
+            <div class="time-box full">
+                <div class="number" id="seconds">0</div>
+                <div class="label">secondi</div>
+            </div>
+        </div>
+
+        <div class="back" onclick="goHome()">← Torna indietro</div>
+    </div>
+
+    <script>
+        // DATA DI INIZIO: 6 settembre 2025 ore 00:00 (ORA LOCALE)
+        const startDate = new Date(2025, 8, 6, 0, 0, 0);
+
+        function updateTime() {
+            const now = new Date();
+
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
+            let hours = now.getHours() - startDate.getHours();
+            let minutes = now.getMinutes() - startDate.getMinutes();
+            let seconds = now.getSeconds() - startDate.getSeconds();
+
+            // Sistemazioni a cascata (calendario reale)
+            if (seconds < 0) {
+                seconds += 60;
+                minutes--;
+            }
+
+            if (minutes < 0) {
+                minutes += 60;
+                hours--;
+            }
+
+            if (hours < 0) {
+                hours += 24;
+                days--;
+            }
+
+            if (days < 0) {
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+                months--;
+            }
+
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
+
+            const totalMonths = years * 12 + months;
+
+            document.getElementById("months").textContent = totalMonths;
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        function goHome() {
+            window.location.href = "../home.html";
+        }
+    </script>
+
+</body>
+
+</html>

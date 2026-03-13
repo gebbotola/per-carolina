@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Leggi quando</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/leggi-quando.css">
+
+</head>
+
+<body>
+
+  <div class="leggi-container">
+
+    <h1>Leggi quando</h1>
+
+    <p class="leggi-subtitle">
+      Non tutte le parole servono sempre.<br>
+      Apri solo quella giusta.
+    </p>
+
+    <div class="letters-grid envelope-grid">
+
+      <div class="letter-card" onclick="openLetter('triste')">
+        <h2>🌧️ Quando sei triste</h2>
+        <p>Parole che non chiedono nulla.</p>
+      </div>
+
+      <div class="letter-card" onclick="openLetter('stanca')">
+        <h2>🌙 Quando sei stanca</h2>
+        <p>Da leggere lentamente.</p>
+      </div>
+
+      <div class="letter-card" onclick="openLetter('noncredi')">
+        <h2>🫂 Quando non credi in te stessa</h2>
+        <p>Per ricordarti chi sei.</p>
+      </div>
+
+      <div class="letter-card" onclick="openLetter('manco')">
+        <h2>💭 Quando ti manco</h2>
+        <p>Anche se non sono lì.</p>
+      </div>
+
+    </div>
+
+    <div class="back-container">
+      <div class="back-button" onclick="goHome()">
+        ← Torna indietro
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+
+    function openLetter(type) {
+
+      window.location.href =
+        "../pages/leggi-quando/quando-" + type + ".html";
+
+    }
+
+    function goHome() {
+      window.location.href = "../home.html";
+    }
+
+  </script>
+
+</body>
+
+</html>
