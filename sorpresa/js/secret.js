@@ -33,26 +33,35 @@ Perché per me sei una delle persone più importanti che esistano.
 
 Ti amo da morire Carolina ❤️`;
 
-    let i = 0;
-    const speed = 35;
-
-    function typeWriter() {
-
-        if (i === 0) {
-            textElement.style.opacity = 1;
-            textElement.style.transform = "translateY(0)";
-        }
-
-        if (i < message.length) {
-            textElement.innerHTML += message.charAt(i);
-            i++;
-            setTimeout(typeWriter, speed);
-        }
+    // Keep a complete, static version available to assistive technology.
+    const fullText = document.createElement('span');
+    fullText.className = 'sr-only'; fullText.textContent = message;
+    const visual = document.createElement('span');
+    visual.setAttribute('aria-hidden', 'true');
+    textElement.replaceChildren(fullText, visual);
+    const node = document.createTextNode(''); visual.appendChild(node);
+    const reveal = document.createElement('button');
+    reveal.type = 'button'; reveal.className = 'reveal-letter'; reveal.textContent = 'Mostra tutta la lettera';
+    textElement.before(reveal);
+    let timer, i = 0;
+    const characters = Array.from(message);
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    function showAll() {
+        clearTimeout(timer); node.data = message;
+        textElement.style.opacity = '1'; textElement.style.transform = 'none';
+        const hadFocus = document.activeElement === reveal;
+        reveal.hidden = true;
+        if (hadFocus) { textElement.tabIndex = -1; textElement.focus({preventScroll:true}); }
     }
-
-    
-
-    setTimeout(typeWriter, 800);
+    function typeWriter() {
+        textElement.style.opacity = '1'; textElement.style.transform = 'none';
+        if (i < characters.length) {
+            node.appendData(characters[i++]); timer = setTimeout(typeWriter, 35);
+        } else reveal.hidden = true;
+    }
+    reveal.addEventListener('click', showAll);
+    reduced.addEventListener('change', event => { if (event.matches) showAll(); });
+    if (reduced.matches) showAll(); else timer = setTimeout(typeWriter, 800);
 };
 
 function goHome() {
