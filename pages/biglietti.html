@@ -3,16 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biglietti</title>
 
     <!-- CSS BASE -->
     <link rel="stylesheet" href="../css/style.css">
     <!-- CSS BIGLIETTI -->
     <link rel="stylesheet" href="../css/biglietti.css">
+    <link rel="stylesheet" href="../css/improvements.css">
 </head>
 
 <body class="tickets-gradient no-hearts">
-    <div class="tickets-wrapper">
+    <a class="skip-link" href="#main-content">Vai al contenuto</a>
+    <div role="main" id="main-content" tabindex="-1" class="tickets-wrapper">
 
         <!-- STEP 1 -->
         <div id="stepTickets">
@@ -52,7 +55,7 @@
             <button onclick="nextEnd()">Continua</button>
         </div>
 
-        <div class="back" onclick="goHome()">← Torna alla home</div>
+        <a class="back" href="../home.html">← Torna alla home</a>
     </div>
 
     <!-- JS -->

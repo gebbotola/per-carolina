@@ -3,18 +3,21 @@
 
 <head>
   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accesso</title>
 
   <!-- CSS globale (stesso della Home) -->
   <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/improvements.css">
 </head>
 
 <body class="index">
+    <a class="skip-link" href="#main-content">Vai al contenuto</a>
 
-  <div class="lock-container">
+  <div role="main" id="main-content" tabindex="-1" class="lock-container">
     <h1>Inserisci il codice</h1>
 
-    <div id="display" class="display">● ● ● ● ● ●</div>
+    <div id="display" class="display" aria-hidden="true">&#9675; &#9675; &#9675; &#9675; &#9675; &#9675;</div><p class="sr-only" id="codeStatus" role="status"></p>
 
     <div class="keypad">
       <button onclick="press(1)">1</button>
@@ -29,7 +32,7 @@
       <button onclick="press(8)">8</button>
       <button onclick="press(9)">9</button>
 
-      <button onclick="clearCode()">⌫</button>
+      <button onclick="backspaceCode()" aria-label="Cancella ultima cifra">⌫</button>
       <button onclick="press(0)">0</button>
       <button onclick="clearCode()">C</button>
     </div>
@@ -60,6 +63,7 @@
       }
 
       display.textContent = dots.trim();
+      document.getElementById("codeStatus").textContent = inputCode.length + " cifre inserite su 6";
     }
 
     function clearCode() {
@@ -76,8 +80,16 @@
         display.classList.add("error");
         setTimeout(() => display.classList.remove("error"), 400);
         clearCode();
+        document.getElementById("codeStatus").textContent = "Codice non corretto. Riprova.";
       }
     }
+    function backspaceCode() { inputCode = inputCode.slice(0, -1); updateDisplay(); }
+    document.addEventListener('keydown', event => {
+      if (event.ctrlKey || event.altKey || event.metaKey) return;
+      if (/^[0-9]$/.test(event.key)) { event.preventDefault(); press(Number(event.key)); }
+      else if (event.key === 'Backspace') { event.preventDefault(); backspaceCode(); }
+      else if (event.key === 'Escape') { clearCode(); }
+    });
   </script>
 
 </body>

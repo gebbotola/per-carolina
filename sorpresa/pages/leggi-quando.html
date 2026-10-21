@@ -3,16 +3,19 @@
 
 <head>
   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leggi quando</title>
 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/leggi-quando.css">
 
+    <link rel="stylesheet" href="../css/improvements.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Vai al contenuto</a>
 
-  <div class="leggi-container">
+  <div role="main" id="main-content" tabindex="-1" class="leggi-container">
 
     <h1>Leggi quando</h1>
 
@@ -23,32 +26,32 @@
 
     <div class="letters-grid envelope-grid">
 
-      <div class="letter-card" onclick="openLetter('triste')">
+      <a class="letter-card" href="leggi-quando/quando-triste.html">
         <h2>🌧️ Quando sei triste</h2>
         <p>Parole che non chiedono nulla.</p>
-      </div>
+      </a>
 
-      <div class="letter-card" onclick="openLetter('stanca')">
+      <a class="letter-card" href="leggi-quando/quando-stanca.html">
         <h2>🌙 Quando sei stanca</h2>
         <p>Da leggere lentamente.</p>
-      </div>
+      </a>
 
-      <div class="letter-card" onclick="openLetter('noncredi')">
+      <a class="letter-card" href="leggi-quando/quando-noncredi.html">
         <h2>🫂 Quando non credi in te stessa</h2>
         <p>Per ricordarti chi sei.</p>
-      </div>
+      </a>
 
-      <div class="letter-card" onclick="openLetter('manco')">
+      <a class="letter-card" href="leggi-quando/quando-ti-manco.html">
         <h2>💭 Quando ti manco</h2>
         <p>Anche se non sono lì.</p>
-      </div>
+      </a>
 
     </div>
 
     <div class="back-container">
-      <div class="back-button" onclick="goHome()">
+      <a class="back-button" href="../home.html">
         ← Torna indietro
-      </div>
+      </a>
     </div>
 
   </div>

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
 
     <!-- CSS GENERALE -->
@@ -10,11 +11,13 @@
 
     <!-- CSS QUIZ -->
     <link rel="stylesheet" href="../css/quiz.css">
+    <link rel="stylesheet" href="../css/improvements.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Vai al contenuto</a>
 
-    <div class="container">
+    <div role="main" id="main-content" tabindex="-1" class="container">
 
         <h1>Quiz</h1>
 
@@ -22,23 +25,23 @@
 
             <div class="progress" id="progressText"></div>
 
-            <div class="bar">
+            <div class="bar" role="progressbar" aria-label="Quiz completato" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                 <div class="bar-fill" id="barFill"></div>
             </div>
 
-            <div class="question" id="question"></div>
+            <div class="question" id="question" tabindex="-1" aria-describedby="progressText"></div>
 
             <div class="answers" id="answers"></div>
 
         </div>
 
         <div id="result" class="hidden">
-            <h2 id="resultTitle"></h2>
+            <h2 id="resultTitle" tabindex="-1"></h2>
             <p id="resultText"></p>
             <button onclick="startQuiz()">Ricomincia</button>
         </div>
 
-        <div class="back" onclick="goHome()">← Torna indietro</div>
+        <a class="back" href="../home.html">← Torna indietro</a>
 
     </div>
 

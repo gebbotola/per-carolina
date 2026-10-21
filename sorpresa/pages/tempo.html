@@ -3,16 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Da quanto stiamo insieme</title>
 
     <!-- CSS BASE / HOME -->
     <link rel="stylesheet" href="../css/style.css">
     <!-- CSS TEMPO -->
     <link rel="stylesheet" href="../css/tempo.css">
+    <link rel="stylesheet" href="../css/improvements.css">
 </head>
 
 <body class="no-hearts">
-    <div class="time-wrapper">
+    <a class="skip-link" href="#main-content">Vai al contenuto</a>
+    <div role="main" id="main-content" tabindex="-1" class="time-wrapper">
 
         <h1>Tempo</h1>
         <p class="subtitle">Da quanto tempo siamo noi.</p>
@@ -44,7 +47,7 @@
             </div>
         </div>
 
-        <div class="back" onclick="goHome()">← Torna indietro</div>
+        <a class="back" href="../home.html">← Torna indietro</a>
     </div>
 
     <script>

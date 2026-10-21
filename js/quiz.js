@@ -61,12 +61,20 @@ let quiz = [];
 let current = 0;
 let score = 0;
 let locked = false;
+let questionTimer = null, secretTimer = null;
 
 function shuffle(array) {
-    return [...array].sort(() => Math.random() - 0.5);
+    const result = [...array];
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
 }
 
 function startQuiz() {
+    clearTimeout(questionTimer); clearTimeout(secretTimer);
+    document.body.classList.remove('wormhole');
     quiz = shuffle(questions).slice(0, 10);
     current = 0;
     score = 0;
@@ -94,32 +102,38 @@ function showQuestion() {
         const btn = document.createElement("button");
         btn.textContent = text;
 
-        btn.onclick = () => answerClick(index === q.correct);
+        btn.type = "button";
+        btn.onclick = () => answerClick(index === q.correct, btn);
 
         answersDiv.appendChild(btn);
     });
 
     updateBar();
+    document.getElementById('question').focus({preventScroll:true});
 }
 
-function answerClick(correct) {
+function answerClick(correct, selected) {
     if (locked) return;
     locked = true;
+    document.querySelectorAll('#answers button').forEach(btn => { btn.disabled = true; });
+    if (selected) selected.classList.add('selected');
 
     if (correct) score++;
 
     current++;
+    updateBar();
 
     if (current < 10) {
-        setTimeout(showQuestion, 200);
+        questionTimer = setTimeout(showQuestion, 350);
     } else {
-        setTimeout(showResult, 200);
+        questionTimer = setTimeout(showResult, 350);
     }
 }
 
 function updateBar() {
     const percent = (current / 10) * 100;
     document.getElementById("barFill").style.width = percent + "%";
+    document.querySelector('.bar').setAttribute('aria-valuenow', percent);
 }
 
 function showResult() {
@@ -139,12 +153,13 @@ function showResult() {
 
         document.body.classList.add("wormhole");
 
-        setTimeout(() => {
+        secretTimer = setTimeout(() => {
             window.location.href = "secret.html";
         }, 1800);
     }
 
     document.getElementById("resultText").textContent = text;
+    document.getElementById('resultTitle').focus({preventScroll:true});
 }
 
 function goHome() {
